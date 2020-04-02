@@ -12,6 +12,37 @@ package arraystring;
  */
 class _01_03_URLify {
     char[] urlify(char[] chars, int trueLength) {
-        throw new UnsupportedOperationException();
+        if (trueLength < 1) return chars;
+        checkSufficientSpace(chars, trueLength);
+
+        int j = chars.length - 1;
+        for (int i = trueLength - 1; i >= 0; i--) {
+            char nextChar = chars[i];
+            if (nextChar == ' ') {
+                chars[j] = '0';
+                chars[j - 1] = '2';
+                chars[j - 2] = '%';
+                j -= 3;
+            } else {
+                chars[j] = nextChar;
+                j--;
+            }
+        }
+        return chars;
+    }
+
+    private void checkSufficientSpace(char[] chars, int trueLength) {
+        int spacesCount = 0;
+        for (int i = 0; i < trueLength; i++) {
+            if (chars[i] == ' ') spacesCount++;
+        }
+        int endSpaceCount = 0;
+        for (int i = chars.length - 1; i >= 0; i--) {
+            if (chars[i] != ' ') break;
+            endSpaceCount++;
+        }
+        if (spacesCount * 2 != endSpaceCount) {
+            throw new IllegalArgumentException("Insufficient space");
+        }
     }
 }

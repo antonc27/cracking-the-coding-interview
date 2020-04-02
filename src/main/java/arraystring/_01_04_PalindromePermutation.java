@@ -12,6 +12,11 @@ package arraystring;
  */
 class _01_04_PalindromePermutation {
     boolean check(String s) {
-        throw new UnsupportedOperationException();
+        int bitmask = 0;
+        for (char c : s.toCharArray()) {
+            if (c < 'a' || c > 'z') continue;
+            bitmask ^= 1 << (c - 'a' + 1);
+        }
+        return bitmask == 0 || ((bitmask - 1) & bitmask) == 0;
     }
 }
