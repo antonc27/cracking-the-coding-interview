@@ -27,6 +27,7 @@ public class _01_05_OneAwayTest {
     @Test
     public void withOneInsertion() {
         assertTrue(s.isOneAway("pae", "pale"));
+        assertTrue(s.isOneAway("apple", "aple"));
     }
 
     @Test
@@ -37,10 +38,16 @@ public class _01_05_OneAwayTest {
     @Test
     public void withOneReplace() {
         assertTrue(s.isOneAway("pawe", "pave"));
+        assertTrue(s.isOneAway("bale", "pale"));
     }
 
     @Test
     public void withMoreEdits() {
         assertFalse(s.isOneAway("paxye", "pamne"));
+    }
+
+    @Test
+    public void withEqualSets() {
+        assertFalse(s.isOneAway("abc", "bac"));
     }
 }
